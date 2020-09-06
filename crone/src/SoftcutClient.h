@@ -26,8 +26,8 @@ namespace crone {
         enum { BufFrames = 16777216 };
         enum { NumVoices = 6 };
         typedef enum { SourceAdc=0 } SourceId;
-        typedef dspkit::AudioBus<2, MaxBlockFrames> StereoBus;
-        typedef dspkit::AudioBus<1, MaxBlockFrames> MonoBus;
+        typedef dspkit::AudioBus<2, MaxBlockFrames, dspkit::FastFader, dspkit::FastMover> StereoBus;
+        typedef dspkit::AudioBus<1, MaxBlockFrames, dspkit::FastFader, dspkit::FastMover> MonoBus;
     public:
         SoftcutClient();
 

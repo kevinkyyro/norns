@@ -79,7 +79,6 @@ int main(int argc, char **argv) {
 #endif
 
     watch_init();
-
     o_init(); // oracle (audio)
 
     w_init(); // weaver (scripting)

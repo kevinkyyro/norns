@@ -25,7 +25,9 @@ namespace  crone {
         enum { MaxBufFrames = 2048 };
         typedef enum { SourceAdc=0, SourceCut=1, SourceExt=2 } SourceId;
         typedef enum { SinkDac=0, SinkCut=1, SinkExt=2 } SinkId;
-        typedef dspkit::AudioBus<2, MaxBufFrames> StereoBus;
+	        //typedef dspkit::FastFader LevelSmoother;
+	    typedef dspkit::OnePoleSmoother<float> LevelSmoother;
+        typedef dspkit::AudioBus<2, MaxBufFrames, LevelSmoother, LevelSmoother> StereoBus;
 
     public:
         MixerClient();
@@ -40,7 +42,6 @@ namespace  crone {
         void processFx(size_t numFrames);
         void setFxDefaults();
     private:
-        typedef dspkit::FastFader LevelSmoother;
         // processors
         StereoCompressor comp;
         ZitaReverb reverb;
@@ -95,7 +96,6 @@ namespace  crone {
             SmoothLevelList();
             void setSampleRate(float sr);
         };
-
         SmoothLevelList smoothLevels;
 
         struct StaticLevelList {
